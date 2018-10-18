@@ -6,20 +6,72 @@ document.addEventListener(`DOMContentLoaded`, () => {
   let homeDiv = document.getElementById(`homeDiv`)
   let tableDiv = document.getElementById(`tableDiv`)
   let inputFormDiv = document.getElementById(`inputFormDiv`)
+  let tableBody = document.getElementById(`tableBody`)
+
+  // BUILDS A TABLE OF ALL MOVIES IN THE DATABASE
+  const buildTable = () => {
+    // clear out the movies tbody
+    while (tableBody.firstChild) {
+      tableBody.removeChild(tableBody.firstChild)
+    }
+    axios.get(`https://tzavaras-movie-db.herokuapp.com/movies`)
+      .then((movies) => {
+        movies.data.forEach((movie) => {
+          let tr = document.createElement(`tr`)
+          let title = document.createElement(`td`)
+          let director = document.createElement(`td`)
+          let year = document.createElement(`td`)
+          let rating = document.createElement(`td`)
+          let deleteTd = document.createElement(`td`)
+          let delButton = document.createElement(`button`)
+          let editTd = document.createElement(`td`)
+          let editButton = document.createElement(`button`)
+          // Fills in the row's data
+          title.innerText = movie.title
+          director.innerText = movie.director
+          year.innerText = movie.year
+          rating.innerText = movie.rating
+          // Add delete button to each row
+          delButton.innerText = `Delete Movie`
+          delButton.setAttribute(`data-id`, movie.id)
+          delButton.addEventListener(`click`, (event) => {
+            console.log(event.target)
+          })
+          editButton.innerText = `Edit Movie`
+          editButton.setAttribute(`data-id`, movie.id)
+          editButton.addEventListener(`click`, (event) => {
+            console.log(event.target)
+          })
+          tr.appendChild(title)
+          tr.appendChild(director)
+          tr.appendChild(year)
+          tr.appendChild(rating)
+          deleteTd.appendChild(delButton)
+          tr.appendChild(deleteTd)
+          editTd.appendChild(editButton)
+          tr.appendChild(editTd)
+          tableBody.appendChild(tr)
+        })
+      })
+      .catch((err) => {
+        console.log(err);
+      })
+  }
   // HANDLES ALL CLICKS ON THE NAV BUTTONS
   const navButtonClicked = (event) => {
     switch (event.target.id) {
       case `homeButton`:
-        console.log(`home`);
+        // Hide the other divs and show the correct one.
         homeDiv.style.display = `block`
         tableDiv.style.display = `none`
         inputFormDiv.style.display = `none`
         break;
       case `moviesButton`:
-        console.log(`all`);
+        // Hide the other divs and show the correct one.
         homeDiv.style.display = `none`
         tableDiv.style.display = `block`
         inputFormDiv.style.display = `none`
+        buildTable();
         break;
       default:
         console.log(`default`);
@@ -30,8 +82,6 @@ document.addEventListener(`DOMContentLoaded`, () => {
   homeButton.addEventListener(`click`, navButtonClicked)
   // moviesButton BUTTON addEventListener
   moviesButton.addEventListener(`click`, navButtonClicked)
-
-
 
   // axios.get(`https://tzavaras-movie-db.herokuapp.com/movies`)
   //   .then(result => console.log(result))
