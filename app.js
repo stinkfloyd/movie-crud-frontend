@@ -33,11 +33,15 @@ document.addEventListener(`DOMContentLoaded`, () => {
           rating.innerText = movie.rating
           // Add delete button to each row
           delButton.innerText = `Delete Movie`
+          delButton.classList.add(`btn`)
+          delButton.classList.add(`btn-danger`)
           delButton.setAttribute(`data-id`, movie.id)
           delButton.addEventListener(`click`, (event) => {
             console.log(event.target)
           })
           editButton.innerText = `Edit Movie`
+          editButton.classList.add(`btn`)
+          editButton.classList.add(`btn-warning`)
           editButton.setAttribute(`data-id`, movie.id)
           editButton.addEventListener(`click`, (event) => {
             console.log(event.target)
