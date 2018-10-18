@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+<head>
+  <meta charset="utf-8">
+  <title></title>
+  <link rel="stylesheet" href="styles.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.18.0/axios.min.js" charset="utf-8"></script>
+  <script src="app.js" charset="utf-8"></script>
+</head>
+
+<body>
+  <div class="" id="titleDiv">
+    <div id="titleRow" class="row">
+      <h1 id="title">Nick's Never-Wrong Movie Review</h1>
+    </div>
+    <div class="row" id="buttonRow">
+      <div class="btn-group" role="group" aria-label="Basic example">
+        <button type="button" class="btn btn-secondary" id="homeButton">Home</button>
+        <button type="button" class="btn btn-secondary" id="moviesButton">Movies</button>
+      </div>
+    </div>
+  </div>
+
+  <div id="tableDiv">
+    <table id="movieTable">
+      <thead>
+        <tr>
+          <th>Title</th>
+          <th>Director</th>
+          <th>Year</th>
+          <th>Rating</th>
+        </tr>
+      </thead>
+      <tbody id="movieTableBody"></tbody>
+    </table>
+  </div>
+
+
+  <div id="inputFormDiv">
+    <h1 id="addHeading"><small>Add a movie</small></h1>
+    <form id="inputForm">
+      <label for="title">Title</label>
+      <input type="text" name="title" id="title"><br>
+
+      <label for="director">Director</label>
+      <input type="text" name="director" id="director"><br>
+
+      <label for="year">Year</label>
+      <input type="number" name="year" id="year" min=1888><br>
+
+      <label for="rating">Rating</label>
+      <input type="number" name="rating" id="rating" min=0 max=5><br>
+
+      <label for="posterUrl">Poster URL</label>
+      <input type="text" name="poster_url" id="posterUrl"><br><br>
+
+      <input type="submit" value="Submit" id="submitForm">
+    </form>
+  </div>
+
+  <div id="homeDiv">
+    Welcome to Nick's Never-Wrong Movie Review, where if you dont agree with the rating, we let you change it! WHAT COULD GO WRONG?!
+  </div>
+
+</body>
+
+</html>
