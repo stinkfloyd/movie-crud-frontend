@@ -37,7 +37,15 @@ document.addEventListener(`DOMContentLoaded`, () => {
           delButton.classList.add(`btn-danger`)
           delButton.setAttribute(`data-id`, movie.id)
           delButton.addEventListener(`click`, (event) => {
-            console.log(event.target)
+            let movieId = event.target.getAttribute('data-id')
+            // DELETE THIS RECORD
+            axios.delete(`https://tzavaras-movie-db.herokuapp.com/movies/${movieId}`)
+              .then((response) => {
+                event.target.parentElement.parentElement.remove()
+              })
+              .catch((err) => {
+                throw err
+              })
           })
           editButton.innerText = `Edit Movie`
           editButton.classList.add(`btn`)
@@ -58,7 +66,7 @@ document.addEventListener(`DOMContentLoaded`, () => {
         })
       })
       .catch((err) => {
-        console.log(err);
+        throw err
       })
   }
   // HANDLES ALL CLICKS ON THE NAV BUTTONS
